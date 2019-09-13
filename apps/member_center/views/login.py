@@ -1,5 +1,5 @@
 # coding:utf-8
-from flask import jsonify
+from flask import jsonify, current_app
 from apps.member_center import member_center
 
 
