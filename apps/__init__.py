@@ -1,9 +1,12 @@
 from flask import Flask
+
+import logging.config
 from flask_sqlalchemy import SQLAlchemy
-
 from config import config
+from log_config import LOGGING_DIC
 
-
+logging.config.dictConfig(LOGGING_DIC)
+logger = logging.getLogger('root')
 db = SQLAlchemy()
 
 

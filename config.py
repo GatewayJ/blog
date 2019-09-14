@@ -1,9 +1,6 @@
 # coding:utf-8
 # author:JiHW
 
-import os
-
-
 class Config():
     SECRET_KEY = 'sd340y30t8jdfjsdkg-q'
 
