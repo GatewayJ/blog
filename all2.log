@@ -12,3 +12,4 @@
 [2019-09-14 23:03:39,205][Thread-1:7964][login.py:hello_world:12][CRITICAL][aaa]
 [2019-09-14 23:03:41,061][Thread-1:7964][login.py:hello_world:12][CRITICAL][aaa]
 [2019-09-14 23:04:46,528][Thread-1:11172][login.py:hello_world:12][CRITICAL][a1aa]
+[2019-09-21 18:10:05,376][Thread-1:139749116245760][login.py:hello_world:11][CRITICAL][a1aa]
