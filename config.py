@@ -10,7 +10,7 @@ class Config():
 
 
 class DevelopmentConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@127.0.0.1: 3306/hz03'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@127.0.0.1:3306/user'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     DEBUG = True
 
