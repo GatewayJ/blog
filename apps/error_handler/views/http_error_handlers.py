@@ -2,7 +2,8 @@
 
 from werkzeug.exceptions import HTTPException
 from apps.error_handler import error_handlers
-from flask import current_app
+from flask import current_app, request
+import json
 
 
 class APIException(HTTPException):
@@ -19,6 +20,25 @@ class APIException(HTTPException):
         if msg:
             self.msg = msg
         super(APIException, self).__init__(msg, None)
+
+    def get_body(self, environ=None):
+        body = dict(
+            msg=self.msg,
+            error_code=self.error_code,
+            request=request.method + ' ' + self.get_url_no_param()
+        )
+        text = json.dumps(body)
+        return text
+
+    def get_headers(self, environ=None):
+        """Get a list of headers."""
+        return [('Content-Type', 'application/json')]
+
+    @staticmethod
+    def get_url_no_param():
+        full_path = str(request.full_path)
+        main_path = full_path.split('?')
+        return main_path[0]
 
 
 class Success(APIException):
