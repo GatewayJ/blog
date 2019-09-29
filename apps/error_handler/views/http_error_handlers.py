@@ -4,6 +4,7 @@ from werkzeug.exceptions import HTTPException
 from apps.error_handler import error_handlers
 from flask import current_app, request
 import json
+from traceback import format_exc,print_exc
 
 
 class APIException(HTTPException):
@@ -70,7 +71,7 @@ class ClientTypeError(APIException):
 
 class ParameterException(APIException):
     code = 400
-    description = 'invalid parameter'
+    msg = 'invalid parameter'
     error_code = 1000
 
 
@@ -94,19 +95,26 @@ class Forbidden(APIException):
 
 @error_handlers.app_errorhandler(Exception)
 def framework_error(e):
-    if isinstance(e, APIException):
-        print(e.msg)
-        return e
-    if isinstance(e, HTTPException):
+    try:
+        raise e
+    except:
+        print_exc()
+    finally:
+        if isinstance(e, APIException):
+            print(e.msg)
+            return e
+        if isinstance(e, HTTPException):
 
-        code = e.code
-        msg = e.description
-        error_code = 1007
-        return APIException(msg, code, error_code)
-    else:
-        # 调试模式
-        # log
-        if not current_app.config['DEBUG']:
-            return ServerError()
+            code = e.code
+            msg = e.description
+            error_code = 1007
+            return APIException(msg, code, error_code)
         else:
-            raise e
+            return ServerError()
+            # 调试模式
+            # log
+            # if not current_app.config['DEBUG']:
+            #
+            #         return ServerError()
+            # else:
+            #     raise e

@@ -18,6 +18,5 @@ class JsonBaseForm(Form):
         valid = super(JsonBaseForm, self).validate()
         if not valid:
             # form errors
-            print("f")
             raise ParameterException()
         return self

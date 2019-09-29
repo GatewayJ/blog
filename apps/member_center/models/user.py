@@ -7,7 +7,7 @@ from apps import db
 class AdminUser(db.Model):
     __tablename__ = 'admin_user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
-    user_name = db.Column(db.String(25), nullable=False)
+    user_name = db.Column(db.String(25), nullable=False, unique=True)
     user_mail = db.Column(db.String(25), nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
 
